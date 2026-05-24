@@ -6,8 +6,10 @@ description: Actions to be taken by the backend team
 
 This section should follow the frontend checklist. The steps are as follows
 
-* [ ] Create the URL in your environment where you will receive the data retrieved by the widget.
-* [ ] In the response body, to confirm that you have received the data correctly, include
+* [ ] **Create the callback URL**\
+  Create a callback URL in your environment where Wealth Reader will send the data obtained through the widget.\
+  This URL must be able to receive POST requests with a JSON body.\
+  To confirm that the data has been received correctly, your endpoint must respond with HTTP 200 and the following body:
 
 ```json
 {
@@ -15,23 +17,14 @@ This section should follow the frontend checklist. The steps are as follows
 }
 ```
 
-*   [ ] Associate the domain where you load the widget with your callback URL and your api\_key:<br>
+*   [ ] **Associate the domain, the callback URL and the API key**\
+    From the Wealth Reader clients area, associate:
 
-    ```json
-    # Define variables
-    API_KEY='12345678'
-    DOMAIN='http://development.client.com'
-    URL_CALLBACK='https://development.client.com/hooks/wealthreader'
-
-    # Execute the curl command using the variables
-    curl --location "https://api.wealthreader.com/domains/" \
-    --header "Content-Type: application/x-www-form-urlencoded" \
-    --data-urlencode "method=add" \
-    --data-urlencode "tokenize=1" \
-    --data-urlencode "api_key=${API_KEY}" \
-    --data-urlencode "domain=${DOMAIN}" \
-    --data-urlencode "url_callback=${URL_CALLBACK}"
-    ```
+    * the domain from which the widget will be loaded;
+    * the callback URL where you will receive the data;
+    * your `api_key`.\
+      \
+      You can do this at: [https://www.wealthreader.com/clients/](https://www.wealthreader.com/clients/)
 
 
 * [ ] To test the full flow, open the page that loads the widget that your front-end partner has created and enter real data or use one of the mock users that we have provided in the welcome email. If you do not have this email, please request it from support@wealthreader.com.
